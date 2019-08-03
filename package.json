@@ -1,0 +1,64 @@
+{
+	"name": "vscode-gcp-storage",
+	"displayName": "vscode-gcp-storage",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.36.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.uploadFile",
+		"*"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.uploadFile",
+				"title": "Upload file to bucket"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "extension.uploadFile",
+					"when": "!explorerResourceIsFolder",
+					"group": "navigation"
+				}
+			]
+		},
+		"configuration": {
+			"title": "GCP-Storage",
+			"properties": {
+				"gcp-storage.bucket": {
+					"type": "string",
+					"default": null,
+					"description": "The bucket to upload to"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.6",
+		"@types/node": "^10.12.21",
+		"@types/vscode": "^1.36.0",
+		"eslint": "^5.13.0",
+		"glob": "^7.1.4",
+		"mocha": "^6.1.4",
+		"typescript": "^3.3.1",
+		"vscode-test": "^1.0.0-next.0"
+	},
+	"dependencies": {
+		"@google-cloud/storage": "^3.0.3",
+		"open": "^6.4.0",
+		"request": "^2.88.0",
+		"request-promise": "^4.2.4"
+	}
+}
